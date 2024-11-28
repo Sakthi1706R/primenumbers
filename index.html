@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prime Numbers</title>
+</head>
+<body>
+    <h1>Prime Numbers Finder</h1>
+    <input type="number" id="numberInput" placeholder="Enter a number" />
+    <button onclick="findPrimes()">Find Primes</button>
+    <p id="output"></p>
+
+    <script>
+        // Function to find prime numbers up to a specified number
+        function primeFactorsTo(num) {
+            const primes = [];
+            for (let i = 2; i <= num; i++) {
+                if (isPrime(i)) {
+                    primes.push(i);
+                }
+            }
+            return primes;
+        }
+
+        // Helper function to check if a number is prime
+        function isPrime(n) {
+            if (n < 2) return false;
+            for (let i = 2; i <= Math.sqrt(n); i++) {
+                if (n % i === 0) {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        // Function to handle user input and display results
+        function findPrimes() {
+            const input = document.getElementById("numberInput").value;
+            const number = parseInt(input);
+            if (isNaN(number) || number < 0) {
+                document.getElementById("output").textContent = "Please enter a valid positive number.";
+            } else {
+                const primes = primeFactorsTo(number);
+                document.getElementById("output").textContent = `Prime numbers up to ${number}: ${primes}`;
+            }
+        }
+    </script>
+</body>
+</html>
